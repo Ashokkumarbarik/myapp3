@@ -13,15 +13,22 @@ export class AppComponent implements OnInit {
   activeTasks: Task[] = [];
   completedTasks: Task[] = [];
   activeItems: any;
+  isNewTask = false;
 
   ngOnInit() {
     this.assignedValue();
     this.allTasks = this.tasks;
     this.getActiveItems();
+    this.isNewTask = true;
 
   }
-
-
+  onAdd() {
+    this.isNewTask = true;
+  }
+  onAddItem(event: any) {
+    this.isNewTask = false;
+    this.getActiveItems();
+  }
   onAll() {
     this.allTasks = this.tasks;
     this.getActiveItems();
@@ -39,6 +46,11 @@ export class AppComponent implements OnInit {
   onClear() {
     this.allTasks = [];
     this.activeItems = null;
+    this.tasks = [];
+    this.assignedValue();
+
+
+
   }
 
   private assignedValue() {
